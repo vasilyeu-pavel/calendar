@@ -1,0 +1,1 @@
+export const TOGGLE_FORM_STATE = "TOGGLE_FORM_STATE";
