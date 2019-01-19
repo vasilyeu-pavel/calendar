@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Day from './Day';
+import EventsModal from './EventsModal';
 // import PropTypes from 'prop-types';
 
 class DaysList extends Component {
@@ -17,6 +18,7 @@ class DaysList extends Component {
         return (
             <div className='calendar-row'>
                 {days.map(day => <Day day={day} key={day.id} />)}
+                <EventsModal />
             </div>
         )
     }

@@ -11,6 +11,7 @@ const createDayData = () => {
             title: '',
             date: null,
             people: [],
+            height: null,
         })
     }
 
@@ -21,6 +22,7 @@ const createDayData = () => {
             title: '',
             date: null,
             people: [],
+            height: null,
         })
     }
 

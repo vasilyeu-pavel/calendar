@@ -1,13 +1,15 @@
-import { } from '../constants.js';
+import { SELECT_ITEM_HEIGHT } from '../constants.js';
 import { createDayData } from '../helpers';
 
 export default function clientReducer(state = createDayData(), action) {
   switch (action.type) {
 
-    // case TOGGLE_FORM_STATE:
-    // return state
-    // 	.set('formIsOpen', !state.get('formIsOpen'))
-    // 	.set('selectedId', null);
+    case SELECT_ITEM_HEIGHT: {
+      return state.map(item => ({
+          ...item,
+          height: action.payload,
+      }));
+    }
 
     default:
       return state;

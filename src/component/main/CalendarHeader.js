@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { selectItemHeight } from '../../actions';
 // import PropTypes from 'prop-types';
 
 class CalendarHeader extends Component {
@@ -13,7 +15,10 @@ class CalendarHeader extends Component {
     }
 
     componentDidMount () {
-        this.setState({ height: this.calendarItem.current.offsetWidth });
+        const { selectItemHeight } = this.props;
+        const height =  this.calendarItem.current.offsetWidth - ( this.calendarItem.current.offsetWidth / 100 * 11);
+        this.setState({ height });
+        selectItemHeight(height);
     }
 
     render() {
@@ -47,4 +52,4 @@ class CalendarHeader extends Component {
     }
 }
 
-export default CalendarHeader
+export default connect(null, { selectItemHeight })(CalendarHeader);

@@ -1,67 +1,47 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 2em;
-  margin-bottom: 1em;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-h1 {
-  font-weight: 300;
-  line-height: 1.25;
-  font-size: 3.2rem;
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
-.btn {
-  display: inline-block;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  outline: none;
-  background-image: none;
-  touch-action: manipulation;
-  font-size: 14px;
-  padding: 6px 12px;
+
+.App {
+    text-align: center;
 }
-.btn-default {
-  background-color: #e0e0e0;
-  color: #333;
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
 }
-.btn-default:focus,
-.btn-default:hover,
-.btn-default.active {
-  background-color: #e8e8e8;
-  color: #333;
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
-.btn-info {
-  background-color: #3b83c0;
-  color: #fff;
+
+.App-link {
+    color: #61dafb;
 }
-.btn-info:focus,
-.btn-info:hover,
-.btn-info.active {
-  background-color: #458ac6;
-  color: #fff;
-}
-.btn-secondary {
-  background-color: #404245;
-  color: #fff;
-}
-.btn-secondary:focus,
-.btn-secondary:hover,
-.btn-secondary.active {
-  background-color: #1b1c1d;
-  color: #fff;
-}
-.btn-xs {
-  font-size: 10px;
-  padding: 2px 4px;
-}
-.btn-xl {
-  font-size: 18px;
-  padding: 10px 16px;
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

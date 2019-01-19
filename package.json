@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "follow-redirects": "^1.6.1",
     "jsdom": "^11.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.3.1",
@@ -17,10 +18,8 @@
   },
   "proxy": "http://localhost:5000/",
   "scripts": {
-    "build-css": "less-watch-compiler --run-once --main-file=index.less src/ src/",
-    "watch-css": "npm run build-css && less-watch-compiler --main-file=App.less src/less src/ && npm run start",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",

@@ -1,7 +1,21 @@
-import { TOGGLE_FORM_STATE } from "../constants"
+import { SELECT_ITEM_HEIGHT, SET_MODAL_COORDS, CLOSE_MODAL } from "../constants"
 
-export function toggleFormState() {
+export function selectItemHeight(height) {
   return {
-    type: TOGGLE_FORM_STATE
+    type: SELECT_ITEM_HEIGHT,
+    payload: height,
+  };
+}
+
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL,
+  };
+}
+
+export function setModalCoords(left, top) {
+  return {
+    type: SET_MODAL_COORDS,
+    payload: { left, top },
   };
 }
