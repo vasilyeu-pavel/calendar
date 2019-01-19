@@ -31,6 +31,7 @@ class Day extends Component {
     };
 
     addEvents = () => {
+        if (this.props.day.id > 31) return;
         const coords = this.getCoords(this.dayItem.current);
         this.props.setModalCoords(coords.left, coords.top);
         this.props.updateDay(this.props.day.id);
@@ -42,7 +43,7 @@ class Day extends Component {
 
         return (
             <div className='calendar-item calendar-day' style={{ height: day.height }} onClick={this.addEvents} ref={this.dayItem}>
-                <div className='calendar-day-number'>{day.day}</div>
+                <div className='calendar-day-number'>{day.day ? day.day.getDate() : null}</div>
                 <div className='calendar-day-title'>{day.events}</div>
                 <div className='calendar-day-users'>{day.users}</div>
             </div>

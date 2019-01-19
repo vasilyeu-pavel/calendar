@@ -7,7 +7,7 @@ const createDayData = () => {
     for (let i = 0; i < dayInMonth; i++) {
         days.push({
             id: i + 1,
-            day: i + 1,
+            day: new Date(`${new Date().getFullYear()} ${new Date().getMonth() + 1} ${i + 1}`),
             events: '',
             date: '',
             users: '',

@@ -45,4 +45,22 @@
     width: 200px;
 }
 
+.add-event-form {
+    padding: 6px;
+    position: absolute;
+    display: flex;
+    background: #FFFFFF;
+    border: 1px solid #C0C0C0;
+    top: 124px;
+    padding: 17px 27px 10px 17px;
+    z-index: 5;
+    box-shadow: 1px 2px 5px #8888;
+}
+
+.add-event-input {
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 2px;
+}
+
 
