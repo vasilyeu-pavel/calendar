@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setModalCoords } from '../../actions';
 // import PropTypes from 'prop-types';
 
 class Day extends Component {
@@ -34,7 +32,8 @@ class Day extends Component {
 
     addEvents = () => {
         const coords = this.getCoords(this.dayItem.current);
-        this.props.setModalCoords(coords.left, coords.top)
+        this.props.setModalCoords(coords.left, coords.top);
+        this.props.updateDay(this.props.day.id);
     };
 
     render() {
@@ -43,10 +42,12 @@ class Day extends Component {
 
         return (
             <div className='calendar-item calendar-day' style={{ height: day.height }} onClick={this.addEvents} ref={this.dayItem}>
-                {day.day}
+                <div className='calendar-day-number'>{day.day}</div>
+                <div className='calendar-day-title'>{day.events}</div>
+                <div className='calendar-day-users'>{day.users}</div>
             </div>
         )
     }
 }
 
-export default connect(null, { setModalCoords })(Day);
+export default Day;

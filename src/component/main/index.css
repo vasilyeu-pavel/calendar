@@ -46,6 +46,10 @@
     width: 100%;
     position: relative;
     z-index: 1;
+    flex-direction: column;
+    max-width: 120px;
+    word-wrap: break-word;
+    overflow: hidden
 }
 
 .calendar-week {
@@ -112,4 +116,12 @@
 textarea {
     width: 100%;
     min-height: 85px;
+}
+
+.calendar-day-title {
+    font-weight: 600;
+}
+
+.calendar-day-users {
+    font-size: 12px;
 }

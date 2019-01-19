@@ -8,10 +8,12 @@ const createDayData = () => {
         days.push({
             id: i + 1,
             day: i + 1,
-            title: '',
-            date: null,
-            people: [],
+            events: '',
+            date: '',
+            users: '',
+            description: '',
             height: null,
+            update: false,
         })
     }
 
@@ -19,16 +21,28 @@ const createDayData = () => {
         days.push({
             id: days.length + 1,
             day: '',
-            title: '',
-            date: null,
-            people: [],
+            events: '',
+            date: '',
+            users: '',
+            description: '',
             height: null,
+            update: false,
         })
     }
 
     return days;
 };
 
+const arrToMap = arr => arr.reduce((map, obj) => {
+    map[obj.id] = obj;
+    return map;
+}, {});
+
+const objToArr = obj => Object.values(obj);
+
+
 module.exports = {
     createDayData,
+    arrToMap,
+    objToArr,
 };
