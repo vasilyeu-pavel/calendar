@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
 import X from "react-feather/dist/icons/x";
+import { connect } from 'react-redux';
+import { addEvents } from "../../actions";
 // import PropTypes from 'prop-types';
 
 
 class AddEventForm extends Component {
     state = {
-        event: ''
+        event: '',
+        error: false,
+        day: null,
     };
 
-    handleEvent = (e) => this.setState({ event: e.target.value });
+    handleEvent = (e) => {
+        if (isNaN(+e.target.value.split(' ')[0])) {
+          this.setState({ event: '', error: true, day: null });
+          return;
+        }
+        this.setState({ event: e.target.value, error: false, day: +e.target.value.split(' ')[0] });
+    };
 
     submitForm = () => {
-        this.setState({ event: '' });
+        if (this.state.day) {
+            this.props.addEvents(this.state.day, this.state.event);
+        }
+        this.setState({ event: '', day: null, error: false });
         this.props.handleOpen();
     };
 
     render() {
-        const { event } = this.state;
+        const { event, error, day } = this.state;
         const { isOpen, handleOpen } = this.props;
         if (!isOpen) return null;
+
+        const validation = error ? { border: '1px solid red'} : { border: '1px solid #C0C0C0'};
 
         return (
             <div className='add-event-form'>
@@ -28,6 +43,7 @@ class AddEventForm extends Component {
                            value={event}
                            onChange={this.handleEvent}
                            placeholder='5 марта, 14:00, День рождение'
+                           style={validation}
                     />
                     <button className='create-button' onClick={this.submitForm}>Создать</button>
                 </form>
@@ -41,4 +57,4 @@ class AddEventForm extends Component {
     }
 }
 
-export default AddEventForm
+export default connect(null, { addEvents })(AddEventForm)
