@@ -1,3 +1,13 @@
+input, textarea {
+    border-radius: 2px;
+    border: 1px solid #C0C0C0;
+}
+
+textarea {
+    resize: none;
+    padding: 5px;
+}
+
 .header {
     display: flex;
     height: 100px;
@@ -45,22 +55,37 @@
     width: 200px;
 }
 
-.add-event-form {
-    padding: 6px;
-    position: absolute;
-    display: flex;
-    background: #FFFFFF;
-    border: 1px solid #C0C0C0;
-    top: 124px;
-    padding: 17px 27px 10px 17px;
-    z-index: 5;
-    box-shadow: 1px 2px 5px #8888;
-}
-
 .add-event-input {
     width: 100%;
     margin-bottom: 6px;
     padding: 2px;
 }
 
+.add-event-form {
+    border: 1px solid #C0C0C0;
+    border-radius: 10px;
+    padding: 20px 35px 20px 20px;
+    position: absolute;
+    background: #FFFFFF;
+    z-index: 5;
+    display: flex;
+    top: 130px;
+    box-shadow: 1px 2px 5px #8888;
+}
+.add-event-form::before, .add-event-form::after {
+    content: '';
+    position: absolute;
+    left: 20px; bottom: -20px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #C0C0C0;
+    bottom: 87px;
+}
+.add-event-form::after {
+    border-bottom: 10px solid #FFFFFF;
+    bottom: 85px;
+}
+
+.create-button {
+    cursor: pointer;
+}
 

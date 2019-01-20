@@ -80,6 +80,23 @@
     height: 280px;
     z-index: 2;
     box-shadow: 1px 2px 5px #8888;
+    padding-right: 15px;
+}
+
+.events-modal::before, .events-modal::after {
+    content: '';
+    position: absolute;
+    border: 10px solid transparent;
+    border-right: 10px solid #FFFFFF;
+    z-index: 1000;
+    left: -19px;
+    top: 35px;
+}
+.events-modal::after {
+    border-right: 10px solid #DCDCDC;
+    left: -20px;
+    top: 35px;
+    z-index: 999;
 }
 
 .events-modal-head {
@@ -127,4 +144,14 @@ textarea {
 }
 .calendar-day-number {
     color: #A9A9A9;
+}
+
+.modal-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.modal-date {
+    margin-bottom: 10px;
+    font-size: 13px;
 }

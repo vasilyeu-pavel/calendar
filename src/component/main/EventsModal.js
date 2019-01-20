@@ -29,27 +29,19 @@ class EventsModal extends Component {
     }
 
     handleEvents = (e) => {
-        if (e.target.value && e.target.value.length) {
-            this.setState({ events: e.target.value })
-        }
+        this.setState({ events: e.target.value })
     };
 
     handleDay = (e) => {
-        if (e.target.value && e.target.value.length) {
-            this.setState({ day: e.target.value })
-        }
+        this.setState({ day: e.target.value })
     };
 
     handleUsers = (e) => {
-        if (e.target.value && e.target.value.length) {
-            this.setState({ users: e.target.value })
-        }
+        this.setState({ users: e.target.value })
     };
 
     handleDescription = (e) => {
-        if (e.target.value && e.target.value.length) {
-            this.setState({ description: e.target.value })
-        }
+        this.setState({ description: e.target.value })
     };
 
     resetState = () => {
@@ -87,25 +79,40 @@ class EventsModal extends Component {
             <div className='events-modal' style={{...open, ...coords}}>
                 <div className='events-modal-head'>
                     <div className='events-modal-head-input'>
-                        <input
-
-                            value={this.state.events}
-                            type='text'
-                            placeholder='Событие'
-                            onChange={this.handleEvents}
-                        />
-                        <input
-                            type='text'
-                            placeholder='День, месяц, год'
-                            value={this.state.day}
-                            onChange={this.handleDay}
-                        />
-                        <input
-                            type='text'
-                            placeholder='Имена участников'
-                            value={this.state.users}
-                            onChange={this.handleUsers}
-                        />
+                        {days.filter(day => day.update)[0]
+                        && !days.filter(day => day.update)[0].events.length
+                        && !days.filter(day => day.update)[0].day.length
+                        && !days.filter(day => day.update)[0].users.length
+                            ?
+                            <div>
+                                <input
+                                    value={this.state.events}
+                                    type='text'
+                                    placeholder='Событие'
+                                    onChange={this.handleEvents}
+                                />
+                                <input
+                                    type = 'text'
+                                    placeholder='День, месяц, год'
+                                    value={this.state.day}
+                                    onChange={this.handleDay}
+                                />
+                                <input
+                                    type='text'
+                                    placeholder='Имена участников'
+                                    value={this.state.users}
+                                    onChange={this.handleUsers}
+                                />
+                            </div>
+                            : <div>
+                                <div className='modal-title'>{this.state.events}</div>
+                                <div className='modal-date'>{this.state.day}</div>
+                                <div>
+                                    <div style={{ fontSize: '11px' }}>Участники:</div>
+                                    <div>{this.state.users}</div>
+                                </div>
+                            </div>
+                        }
 
                     </div>
                 </div>

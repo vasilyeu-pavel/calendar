@@ -29,7 +29,7 @@ class AddEventForm extends Component {
                            onChange={this.handleEvent}
                            placeholder='5 марта, 14:00, День рождение'
                     />
-                    <button onClick={this.submitForm}>Создать</button>
+                    <button className='create-button' onClick={this.submitForm}>Создать</button>
                 </form>
                 <span className='events-modal-exit'
                       onClick={handleOpen}
