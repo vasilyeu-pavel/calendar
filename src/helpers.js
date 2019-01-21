@@ -1,7 +1,6 @@
 const getDayInMonth = () => new Date(new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 2}`) - 1).getDate();
-const getDayWeek = () => new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-01`).getDay() - 1;
 
-const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const getDayWeek = () => new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-01`).getDay() - 1;
 
 const getId = (length) => {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'.split('');
@@ -15,6 +14,17 @@ const getId = (length) => {
     return str;
 };
 
+const defaultDayOptions = {
+    day: '',
+    events: '',
+    date: '',
+    users: '',
+    description: '',
+    height: null,
+    update: false,
+    found: false,
+};
+
 const createDayData = () => {
     const dayWeek = getDayWeek();
     const dayInMonth = getDayInMonth();
@@ -24,40 +34,23 @@ const createDayData = () => {
         for (let i = 0; i < dayWeek; i++) {
             days.push({
                 id: getId(10),
-                day: '',
-                events: '',
-                date: '',
-                users: '',
-                description: '',
-                height: null,
-                update: false,
+                ...defaultDayOptions
             })
         }
     }
 
     for (let i = 0; i < dayInMonth; i++) {
         days.push({
+            ...defaultDayOptions,
             id: getId(10),
             day: new Date(`${new Date().getFullYear()} ${new Date().getMonth() + 1} ${i + 1}`),
-            events: '',
-            date: '',
-            users: '',
-            description: '',
-            height: null,
-            update: false,
         })
     }
 
     while (days.length % 7 !== 0) {
         days.push({
             id: getId(10),
-            day: '',
-            events: '',
-            date: '',
-            users: '',
-            description: '',
-            height: null,
-            update: false,
+            ...defaultDayOptions
         })
     }
 

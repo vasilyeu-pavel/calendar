@@ -29,7 +29,7 @@ class AddEventForm extends Component {
     };
 
     render() {
-        const { event, error, day } = this.state;
+        const { event, error } = this.state;
         const { isOpen, handleOpen } = this.props;
         if (!isOpen) return null;
 

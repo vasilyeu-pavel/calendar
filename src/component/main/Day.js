@@ -41,8 +41,10 @@ class Day extends Component {
         const { day } = this.props;
         if (!day.height) return null;
 
+        const border = day.found ? { border: '1px solid #87CEFA', background: '#F5F5F5' } : null;
+
         return (
-            <div className='calendar-item calendar-day' style={{ height: day.height }} onClick={this.addEvents} ref={this.dayItem}>
+            <div className='calendar-item calendar-day' style={{ height: day.height, ...border }} onClick={this.addEvents} ref={this.dayItem}>
                 <div className='calendar-day-number'>{day.day ? day.day.getDate() : null}</div>
                 <div className='calendar-day-title'>{day.events}</div>
                 <div className='calendar-day-users'>{day.users}</div>

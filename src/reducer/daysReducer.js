@@ -1,4 +1,4 @@
-import { SELECT_ITEM_HEIGHT, UPDATE_DAY, SUBMIT_EVENTS, CLOSE_MODAL, ADD_EVENTS } from '../constants.js';
+import { SELECT_ITEM_HEIGHT, UPDATE_DAY, SUBMIT_EVENTS, CLOSE_MODAL, ADD_EVENTS, SEARCH_DAY } from '../constants.js';
 import { createDayData, arrToMap, objToArr } from '../helpers';
 
 export default function clientReducer(state = createDayData(), action) {
@@ -13,13 +13,13 @@ export default function clientReducer(state = createDayData(), action) {
         case UPDATE_DAY: {
             const objState = arrToMap(state);
             objState[action.payload.dayId].update = true;
-            return [...objToArr(objState)];
+            return objToArr(objState);
         }
 
         case CLOSE_MODAL: {
             const objState = arrToMap(state);
             objState[action.payload.dayId].update = false;
-            return [...objToArr(objState)];
+            return objToArr(objState);
         }
 
         case SUBMIT_EVENTS: {
@@ -30,18 +30,41 @@ export default function clientReducer(state = createDayData(), action) {
             objState[dayId].users = users;
             objState[dayId].events = events;
             objState[dayId].description = description;
-            return [...objToArr(objState)];
+            return objToArr(objState);
         }
 
         case ADD_EVENTS: {
             const { events, dayNumber } = action.payload;
-            const objState = arrToMap(state);
-            objState[dayNumber].update = false;
-            objState[dayNumber].date = events.split(',')[0];
-            if (events.split(',')[1]) {
-                objState[dayNumber].events = events.split(',')[1];
+            return state.map(day => {
+                if (day.day && day.day.getDate() === dayNumber) {
+                    day.update = false;
+                    day.date = events.split(',')[0];
+                    if (events.split(',')[1]) {
+                        day.events = events.split(',')[1];
+                    }
+                    return day;
+                }
+                return day;
+            });
+        }
+
+        case SEARCH_DAY: {
+            const { text } = action.payload;
+            if (text.length) {
+                return state.map(day => {
+                    if (day.events.includes(text) || day.date.includes(text) || day.users.includes(text)) {
+                        day.found = true;
+                        return day;
+                    }
+                    day.found = false;
+                    return day;
+                });
+                return state;
             }
-            return [...objToArr(objState)];
+            return state.map(day => {
+                day.found = false;
+                return day;
+            });
         }
 
         default:

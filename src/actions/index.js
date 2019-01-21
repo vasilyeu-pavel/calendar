@@ -1,4 +1,4 @@
-import { SELECT_ITEM_HEIGHT, SET_MODAL_COORDS, CLOSE_MODAL, SUBMIT_EVENTS, UPDATE_DAY, ADD_EVENTS } from "../constants"
+import { SELECT_ITEM_HEIGHT, SET_MODAL_COORDS, CLOSE_MODAL, SUBMIT_EVENTS, UPDATE_DAY, ADD_EVENTS, SEARCH_DAY } from "../constants"
 
 export function selectItemHeight(height) {
   return {
@@ -41,4 +41,13 @@ export function addEvents(dayNumber, events) {
     payload: { dayNumber, events },
   };
 }
+
+export function searchDay(text) {
+  return {
+    type: SEARCH_DAY,
+    payload: { text },
+  };
+}
+
+
 
