@@ -31,7 +31,7 @@ class Day extends Component {
     };
 
     addEvents = () => {
-        if (this.props.day.id > 31) return;
+        if (!this.props.day.day) return;
         const coords = this.getCoords(this.dayItem.current);
         this.props.setModalCoords(coords.left, coords.top);
         this.props.updateDay(this.props.day.id);
