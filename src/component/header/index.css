@@ -78,11 +78,11 @@ textarea {
     left: 20px; bottom: -20px;
     border: 10px solid transparent;
     border-bottom: 10px solid #C0C0C0;
-    bottom: 87px;
+    bottom: 88px;
 }
 .add-event-form::after {
     border-bottom: 10px solid #FFFFFF;
-    bottom: 85px;
+    bottom: 86px;
 }
 
 .create-button {
