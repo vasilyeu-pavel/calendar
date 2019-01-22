@@ -1,4 +1,14 @@
-import { SET_MODAL_COORDS, CLOSE_MODAL, SUBMIT_EVENTS, UPDATE_DAY, ADD_EVENTS, SEARCH_DAY, PREVIOUS_MONTH, NEXT_MONTH } from "../constants"
+import {
+  SET_MODAL_COORDS,
+    CLOSE_MODAL,
+    SUBMIT_EVENTS,
+    UPDATE_DAY,
+    ADD_EVENTS,
+    SEARCH_DAY,
+    PREVIOUS_MONTH,
+    NEXT_MONTH,
+    UPDATE_CURRENT_STATE
+} from "../constants"
 
 export function closeModal(dayId, currentMonth, currentYear) {
   return {
@@ -60,6 +70,17 @@ export function previousMonth(currentMonth, currentYear) {
           currentMonth: (currentMonth === 0) ? 11 : currentMonth - 1,
       }
   };
+}
+
+export function updateCurrentState() {
+    return {
+        type: UPDATE_CURRENT_STATE,
+        payload: {
+            currentYear: new Date().getFullYear(),
+            currentMonth: new Date().getMonth(),
+            currentDay: new Date().getDate(),
+        }
+    };
 }
 
 

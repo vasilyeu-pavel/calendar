@@ -39,9 +39,9 @@ class Day extends Component {
     };
 
     render() {
-        const { day } = this.props;
+        const { day, currentDay } = this.props;
 
-        const border = day.found ? { border: '1px solid #87CEFA', background: '#F5F5F5' } : null;
+        const border = day.day && (day.found || currentDay === day.day.getDate()) ? { border: '1px solid #87CEFA', background: '#F5F5F5' } : null;
 
         return (
             <div

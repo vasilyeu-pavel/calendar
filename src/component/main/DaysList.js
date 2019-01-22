@@ -30,4 +30,5 @@ export default connect((state) => ({
     days: state.days,
     currentMonth: state.currentDate.currentMonth,
     currentYear: state.currentDate.currentYear,
+    currentDay: state.currentDate.currentDay,
 }), { setModalCoords, updateDay })(DaysList)

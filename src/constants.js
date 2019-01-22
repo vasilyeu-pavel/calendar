@@ -6,3 +6,4 @@ export const ADD_EVENTS = 'ADD_EVENTS';
 export const SEARCH_DAY = 'SEARCH_DAY';
 export const NEXT_MONTH = 'NEXT_MONTH';
 export const PREVIOUS_MONTH = 'PREVIOUS_MONTH';
+export const UPDATE_CURRENT_STATE = 'UPDATE_CURRENT_STATE';
