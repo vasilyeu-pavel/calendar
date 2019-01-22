@@ -2,10 +2,18 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1% 13%;
+    padding: 1% 0;
+    width: 70%;
+    margin: 0 auto;
 }
 
-.main-header, .main-calendar {
+.main-header {
+    display: flex;
+    width: 30%;
+    align-items: center;
+}
+
+.main-calendar {
     display: flex;
     width: 100%;
     align-items: center;
@@ -16,14 +24,9 @@
 }
 
 .day-item {
-    display: flex;
-    align-items: center;
-    border: 1px solid #C0C0C0;
-    border-radius: 5px;
-    margin-right: 5px;
-    width: 20px;
-    height: 20px;
-    padding-left: 3px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
 }
 
 .day {
@@ -39,27 +42,29 @@
 
 .calendar-item {
     display: flex;
-    flex: 1 0 11%;
     border: 1px solid #D3D3D3;
-    padding: 15px;
+    padding: 9px;
     font-size: 1.1em;
-    width: 100%;
+    width: auto;
     position: relative;
     z-index: 1;
     flex-direction: column;
-    max-width: 125px;
     word-wrap: break-word;
-    overflow: hidden
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    height: 70px;
 }
 
 .calendar-week {
     color: #A9A9A9;
     font-size: 15px;
+    display: flex;
 }
 
-.calendar-row {
-    display: flex;
-    flex-wrap: wrap;
+.calendar {
+    width: 100%;
 }
 
 .calendar-day:hover {
@@ -154,4 +159,13 @@ textarea {
 .modal-date {
     margin-bottom: 10px;
     font-size: 13px;
+}
+
+.previous, .next:hover {
+    cursor: pointer;
+}
+
+.previous, .next {
+    display: flex;
+    justify-content: center;
 }

@@ -1,6 +1,6 @@
-const getDayInMonth = () => new Date(new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 2}`) - 1).getDate();
+const getDayInMonth = (year, month) => 32 - new Date(year, month, 32).getDate();
 
-const getDayWeek = () => new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-01`).getDay() - 1;
+const getDayWeek = (year, month) => new Date(`${year}-${month + 1}-01`).getDay() - 1;
 
 const getId = (length) => {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'.split('');
@@ -25,9 +25,9 @@ const defaultDayOptions = {
     found: false,
 };
 
-const createDayData = () => {
-    const dayWeek = getDayWeek();
-    const dayInMonth = getDayInMonth();
+const getMonth = (year = new Date().getFullYear(), month = new Date().getMonth()) => {
+    const dayWeek = getDayWeek(year, month);
+    const dayInMonth = getDayInMonth(year, month);
     const days = [];
 
     if (dayWeek !== 0) {
@@ -43,7 +43,7 @@ const createDayData = () => {
         days.push({
             ...defaultDayOptions,
             id: getId(10),
-            day: new Date(`${new Date().getFullYear()} ${new Date().getMonth() + 1} ${i + 1}`),
+            day: new Date(`${year} ${month + 1} ${i + 1}`),
         })
     }
 
@@ -64,9 +64,18 @@ const arrToMap = arr => arr.reduce((map, obj) => {
 
 const objToArr = obj => Object.values(obj);
 
+const chunkArray = (arr, chunk) => {
+    let i, j, result = [];
+    for (i = 0, j = arr.length; i < j; i += chunk) {
+        result.push(arr.slice(i, i + chunk));
+    }
+    return result;
+};
+
 
 module.exports = {
-    createDayData,
+    getMonth,
     arrToMap,
     objToArr,
+    chunkArray
 };

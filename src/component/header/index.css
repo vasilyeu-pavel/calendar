@@ -10,10 +10,11 @@ textarea {
 
 .header {
     display: flex;
-    height: 100px;
+    height: 80px;
     background: #DCDCDC;
     align-items: flex-end;
-    padding: 1% 13%;
+    padding: 1% 0;
+    margin: 0 auto;
     box-shadow: 1px 2px 5px #8888
 }
 
@@ -28,7 +29,8 @@ textarea {
 }
 
 .section-buttons {
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 }

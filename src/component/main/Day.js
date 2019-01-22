@@ -26,25 +26,30 @@ class Day extends Component {
 
         return {
             top: top,
-            left: left + day.height + 30,
+            left: left + day.height + 90,
         };
     };
 
     addEvents = () => {
-        if (!this.props.day.day) return;
+        const { currentMonth, currentYear, setModalCoords, updateDay, day } = this.props;
+        if (!day.day) return;
         const coords = this.getCoords(this.dayItem.current);
-        this.props.setModalCoords(coords.left, coords.top);
-        this.props.updateDay(this.props.day.id);
+        setModalCoords(coords.left, coords.top);
+        updateDay(day.id, currentYear, currentMonth);
     };
 
     render() {
         const { day } = this.props;
-        if (!day.height) return null;
 
         const border = day.found ? { border: '1px solid #87CEFA', background: '#F5F5F5' } : null;
 
         return (
-            <div className='calendar-item calendar-day' style={{ height: day.height, ...border }} onClick={this.addEvents} ref={this.dayItem}>
+            <div
+                className='calendar-item calendar-day'
+                style={{ height: day.height, ...border }}
+                onClick={this.addEvents}
+                ref={this.dayItem}
+            >
                 <div className='calendar-day-number'>{day.day ? day.day.getDate() : null}</div>
                 <div className='calendar-day-title'>{day.events}</div>
                 <div className='calendar-day-users'>{day.users}</div>

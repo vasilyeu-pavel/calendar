@@ -1,5 +1,4 @@
-import { SET_MODAL_COORDS } from '../constants.js';
-import {CLOSE_MODAL} from "../constants";
+import { SET_MODAL_COORDS, CLOSE_MODAL } from '../constants.js';
 
 export default function modalReducer(state = { left: null, top: null, isOpen: false }, action) {
     switch (action.type) {

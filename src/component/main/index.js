@@ -4,7 +4,7 @@ import CalendarHeader from './CalendarHeader';
 import DaysList from './DaysList';
 import './index.css';
 
-const Main = props => {
+const Main = () => {
     return (
         <div className='main'>
             <MainHeader />

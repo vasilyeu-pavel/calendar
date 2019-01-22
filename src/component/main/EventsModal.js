@@ -18,8 +18,8 @@ class EventsModal extends Component {
     }
 
     componentWillReceiveProps() {
-        const { days } = this.props;
-        const [filteredDay] = days.filter(day => day.update);
+        const { days, currentMonth, currentYear } = this.props;
+        const [filteredDay] = days[`${currentYear}${currentMonth}`].filter(day => day.update);
         if (filteredDay) {
             const { date, events, users, description } = filteredDay;
             this.setState({
@@ -55,23 +55,24 @@ class EventsModal extends Component {
 
     handleSubmit = () => {
         const { events, day, users, description } = this.state;
-        const { days, submitEvents, closeModal } = this.props;
-        const [filteredDay] = days.filter(day => day.update);
-        closeModal(filteredDay.id);
+        const { days, submitEvents, closeModal, currentMonth, currentYear } = this.props;
+        const [filteredDay] = days[`${currentYear}${currentMonth}`].filter(day => day.update);
+        closeModal(filteredDay.id, currentMonth, currentYear);
         if (!events.length && !day.length && !description.length && !users.length) return;
-        submitEvents(events, day, users, description, filteredDay.id);
+        submitEvents(events, day, users, description, filteredDay.id, currentMonth, currentYear);
         this.resetState();
     };
 
     handleRemove = () => {
-        const filteredDay = this.props.days.filter(day => day.update)[0];
-        this.props.submitEvents('', '', '', '', filteredDay.id);
-        this.props.closeModal(filteredDay.id);
+        const { currentMonth, currentYear } = this.props;
+        const filteredDay = this.props.days[`${currentYear}${currentMonth}`].filter(day => day.update)[0];
+        this.props.submitEvents('', '', '', '', filteredDay.id, currentMonth, currentYear);
+        this.props.closeModal(filteredDay.id, currentMonth, currentYear);
         this.resetState();
     };
 
     render() {
-        const { modal, closeModal, days } = this.props;
+        const { modal, closeModal, days, currentMonth, currentYear } = this.props;
         const open = modal.isOpen ? { visibility: 'visible'} : { visibility: 'hidden'};
         const coords = { left:  `${modal.left}px`, top:  `${modal.top}px`, };
 
@@ -79,10 +80,10 @@ class EventsModal extends Component {
             <div className='events-modal' style={{...open, ...coords}}>
                 <div className='events-modal-head'>
                     <div className='events-modal-head-input'>
-                        {days.filter(day => day.update)[0]
-                        && !days.filter(day => day.update)[0].events.length
-                        && !days.filter(day => day.update)[0].day.length
-                        && !days.filter(day => day.update)[0].users.length
+                        {days[`${currentYear}${currentMonth}`].filter(day => day.update)[0]
+                        && !days[`${currentYear}${currentMonth}`].filter(day => day.update)[0].events.length
+                        && !days[`${currentYear}${currentMonth}`].filter(day => day.update)[0].day.length
+                        && !days[`${currentYear}${currentMonth}`].filter(day => day.update)[0].users.length
                             ?
                             <div>
                                 <input
@@ -131,7 +132,7 @@ class EventsModal extends Component {
                 <span className='events-modal-exit'
                       onClick={() => {
                           this.resetState();
-                          closeModal(days.filter(day => day.update)[0].id);
+                          closeModal(days[`${currentYear}${currentMonth}`].filter(day => day.update)[0].id, currentMonth, currentYear);
 
                       }}
                 >
@@ -144,5 +145,7 @@ class EventsModal extends Component {
 
 export default connect((state) => ({
     days: state.days,
-    modal: state.modal
+    modal: state.modal,
+    currentMonth: state.currentDate.currentMonth,
+    currentYear: state.currentDate.currentYear,
 }), { closeModal, submitEvents })(EventsModal);

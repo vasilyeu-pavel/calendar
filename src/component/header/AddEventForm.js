@@ -21,8 +21,9 @@ class AddEventForm extends Component {
     };
 
     submitForm = () => {
+        const { currentMonth, currentYear } = this.props;
         if (this.state.day) {
-            this.props.addEvents(this.state.day, this.state.event);
+            this.props.addEvents(this.state.day, this.state.event, currentMonth, currentYear);
         }
         this.setState({ event: '', day: null, error: false });
         this.props.handleOpen();
@@ -57,4 +58,7 @@ class AddEventForm extends Component {
     }
 }
 
-export default connect(null, { addEvents })(AddEventForm)
+export default connect((state) => ({
+    currentMonth: state.currentDate.currentMonth,
+    currentYear: state.currentDate.currentYear,
+}), { addEvents })(AddEventForm)

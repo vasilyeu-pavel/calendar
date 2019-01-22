@@ -11,15 +11,16 @@ class SearchInput extends Component {
     };
 
     handleSearch = e => {
+        const { currentMonth, currentYear } = this.props;
         this.setState({ target: e.target.value });
-        this.props.searchDay(e.target.value);
+        this.props.searchDay(e.target.value, currentMonth, currentYear);
     };
 
     render() {
         const { target } = this.state;
-        const { days } = this.props;
+        const { days, currentMonth, currentYear } = this.props;
 
-        const filteredDays = days.filter(day => day.found);
+        const filteredDays = days[`${currentYear}${currentMonth}`].filter(day => day.found);
         const visibility = filteredDays.length ? { visibility: 'visible' } : { visibility: 'hidden' };
 
         return (
@@ -54,5 +55,7 @@ class SearchInput extends Component {
 }
 
 export default connect((state) => ({
-    days: state.days
+    days: state.days,
+    currentMonth: state.currentDate.currentMonth,
+    currentYear: state.currentDate.currentYear,
 }), { searchDay })(SearchInput);
